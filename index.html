@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eurma C. Hayes Community Center</title>
+  <meta name="description" content="Eurma C. Hayes Community Center — a fun, safe, educational place for kids, families, and the community in Carbondale." />
+
+  <!-- Friendly font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#fff7ed;   /* warm cream */
+      --bg2:#ecfeff;   /* light aqua */
+      --ink:#102a43;
+      --muted:#486581;
+      --card:#ffffff;
+      --border: rgba(16,42,67,.10);
+
+      --pink:#ff5fa2;
+      --blue:#4f8cff;
+      --green:#22c55e;
+      --yellow:#fbbf24;
+      --purple:#a78bfa;
+
+      --shadow: 0 18px 35px rgba(16,42,67,.12);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(255,95,162,.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(79,140,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 50% 90%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(120deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:18px}
+
+    /* Top bar */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), transparent 42%),
+        linear-gradient(135deg, var(--pink), var(--blue));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-10px;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(251,191,36,.55), transparent 35%),
+        radial-gradient(circle at 25% 70%, rgba(34,197,94,.35), transparent 40%);
+      transform: rotate(12deg);
+    }
+    .brandTitle{
+      line-height:1.05;
+    }
+    .brandTitle strong{display:block; font-weight:800; letter-spacing:.2px}
+    .brandTitle span{display:block; font-size:12px; color:var(--muted); margin-top:4px}
+
+    nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    nav a:hover{
+      background: rgba(79,140,255,.10);
+      border-color: rgba(79,140,255,.25);
+      color: var(--ink);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+      padding: 22px 0 10px;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .heroH1{
+      margin:0 0 8px;
+      font-size: 40px;
+      line-height:1.05;
+      font-weight:800;
+    }
+    .lead{
+      margin:0 0 14px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .badgeRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(251,191,36,.18);
+      border: 1px solid rgba(251,191,36,.35);
+      font-weight:800;
+      font-size:13px;
+    }
+    .badge.alt{
+      background: rgba(34,197,94,.14);
+      border-color: rgba(34,197,94,.28);
+    }
+    .badge.blue{
+      background: rgba(79,140,255,.14);
+      border-color: rgba(79,140,255,.28);
+    }
+
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      font-weight:900;
+      border: 1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+      box-shadow: 0 14px 25px rgba(79,140,255,.25);
+    }
+    .btn.secondary{
+      background: rgba(255,95,162,.10);
+      border-color: rgba(255,95,162,.25);
+      color: var(--ink);
+    }
+    .btn:hover{transform: translateY(-1px)}
+
+    /* Cute “learning” doodles */
+    .doodles{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .doodle{
+      flex:1 1 120px;
+      min-width:120px;
+      padding:12px;
+      border-radius:16px;
+      border: 1px dashed rgba(16,42,67,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+    }
+    .doodle b{display:block; font-weight:900; margin-bottom:2px}
+    .doodle span{color:var(--muted); font-size:13px}
+
+    /* Sections */
+    section{scroll-margin-top:90px; margin-top: 18px}
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin: 10px 0 12px;
+    }
+    .sectionTitle h2{
+      margin:0; font-size:22px; font-weight:900;
+    }
+    .sectionTitle p{margin:0; color:var(--muted)}
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .iconCard h3{margin:0 0 6px; font-weight:900}
+    .iconCard p{margin:0; color:var(--muted)}
+    .icon{
+      width:44px; height:44px; border-radius:14px; display:grid; place-items:center;
+      font-size:22px;
+      margin-bottom:10px;
+      border: 1px solid var(--border);
+    }
+    .iPink{background: rgba(255,95,162,.14)}
+    .iBlue{background: rgba(79,140,255,.14)}
+    .iGreen{background: rgba(34,197,94,.14)}
+    .iYellow{background: rgba(251,191,36,.16)}
+    .iPurple{background: rgba(167,139,250,.16)}
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .kv{display:grid; gap:10px; margin-top:10px}
+    .kv .row{
+      display:flex; gap:12px; justify-content:space-between; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.75);
+    }
+    .kv b{font-weight:900}
+    .kv span{color:var(--muted); text-align:right; max-width:65%}
+
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color: var(--muted);
+    }
+    .list li{margin:6px 0}
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      border-top: 1px solid var(--border);
+      padding: 18px 0 34px;
+      color: var(--muted);
+      text-align:center;
+    }
+    .small{font-size:12px}
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .twoCol{grid-template-columns:1fr}
+      nav{display:none}
+      .heroH1{font-size:34px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="Home">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <strong>Eurma C. Hayes Community Center</strong>
+          <span>Carbondale • Kids • Families • Community</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div class="card">
+        <h1 class="heroH1">A fun, safe place to learn & grow 🌟</h1>
+        <p class="lead">
+          Eurma C. Hayes Community Center supports kids, families, and neighbors with educational activities,
+          positive programs, and community events.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#contact">📩 Contact Us</a>
+          <a class="btn secondary" href="#programs">🎒 See Programs</a>
+        </div>
+
+        <div class="badgeRow" aria-label="Quick highlights">
+          <div class="badge blue">📍 441 E Willow St, Carbondale, IL 62901</div>
+          <div class="badge alt">🧠 Learning + Fun</div>
+          <div class="badge">🤝 Family Friendly</div>
+        </div>
+
+        <div class="doodles" aria-label="Highlights">
+          <div class="doodle">
+            <b>Homework Help</b>
+            <span>Support + tutoring</span>
+          </div>
+          <div class="doodle">
+            <b>Games & Activities</b>
+            <span>Healthy fun</span>
+          </div>
+          <div class="doodle">
+            <b>Community Events</b>
+            <span>All ages welcome</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sectionTitle" style="margin:0 0 10px;">
+          <h2 style="font-size:18px; margin:0;">Quick Info</h2>
+          <p style="margin:0;">Basics</p>
+        </div>
+
+        <div class="kv">
+          <div class="row"><b>Address</b><span>441 E Willow St, Carbondale, IL 62901</span></div>
+          <div class="row"><b>Phone</b><span>[Add phone]</span></div>
+          <div class="row"><b>Email</b><span>[Add email]</span></div>
+          <div class="row"><b>Social</b><span>[Add @handle or link]</span></div>
+        </div>
+
+        <p class="small" style="margin:12px 0 0;">
+          Tip: once you give me the phone/email/hours, I’ll plug them in clean.
+        </p>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="sectionTitle">
+        <h2>About Us</h2>
+        <p>Who we are</p>
+      </div>
+
+      <div class="twoCol">
+        <div class="card">
+          <div class="icon iPurple">🏫</div>
+          <h3 style="margin:0 0 8px;">Our Mission</h3>
+          <p style="margin:0; color:var(--muted);">
+            Our mission is to provide a welcoming space where kids can learn, build confidence,
+            and stay active — while families and community members stay connected.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon iYellow">✨</div>
+          <h3 style="margin:0 0 8px;">What You’ll Find Here</h3>
+          <ul class="list">
+            <li>Educational support and skill-building</li>
+            <li>Recreation and positive activities</li>
+            <li>Mentoring and youth development</li>
+            <li>Family-friendly community events</li>
+            <li>Volunteer opportunities</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs">
+      <div class="sectionTitle">
+        <h2>Programs</h2>
+        <p>Fun + educational</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card iconCard">
+          <div class="icon iBlue">📚</div>
+          <h3>Homework Help</h3>
+          <p>Tutoring, study time, and support for students.</p>
+        </div>
+
+        <div class="card iconCard">
+          <div class="icon iGreen">🏀</div>
+          <h3>Sports & Recreation</h3>
+          <p>Activities that keep kids active, confident, and healthy.</p>
+        </div>
+
+        <div class="card iconCard">
+          <div class="icon iPink">🎨</div>
+          <h3>Creative Corner</h3>
+          <p>Arts, crafts, and fun projects that build imagination.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <div class="icon iYellow">📝</div>
+        <h3 style="margin:0 0 8px;">How to Join</h3>
+        <p style="margin:0; color:var(--muted);">
+          Call or email the center to learn what’s available right now and how to register.
+          Some youth programs may require a parent/guardian form.
+        </p>
+      </div>
+    </section>
+
+    <section id="hours">
+      <div class="sectionTitle">
+        <h2>Hours</h2>
+        <p>When we’re open</p>
+      </div>
+
+      <div class="twoCol">
+        <div class="card">
+          <div class="icon iPurple">🕒</div>
+          <h3 style="margin:0 0 10px;">Open Hours</h3>
+          <div class="kv">
+            <div class="row"><b>Monday</b><span>[Add hours]</span></div>
+            <div class="row"><b>Tuesday</b><span>[Add hours]</span></div>
+            <div class="row"><b>Wednesday</b><span>[Add hours]</span></div>
+            <div class="row"><b>Thursday</b><span>[Add hours]</span></div>
+            <div class="row"><b>Friday</b><span>[Add hours]</span></div>
+            <div class="row"><b>Saturday</b><span>[Add hours]</span></div>
+            <div class="row"><b>Sunday</b><span>[Add hours / Closed]</span></div>
+          </div>
+          <p class="small" style="margin:12px 0 0;">
+            Hours may change for holidays or special events.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon iBlue">🗺️</div>
+          <h3 style="margin:0 0 10px;">Location</h3>
+          <p style="margin:0; color:var(--muted);">
+            We’re located at <b>441 E Willow St, Carbondale, IL 62901</b>.
+            Add any notes here about parking, entrances, or accessibility.
+          </p>
+          <div class="badgeRow" style="margin-top:12px;">
+            <div class="badge blue">♿ Accessible</div>
+            <div class="badge alt">🅿️ [Parking info]</div>
+            <div class="badge">🚌 [Bus info]</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sectionTitle">
+        <h2>Contact</h2>
+        <p>We’d love to hear from you</p>
+      </div>
+
+      <div class="twoCol">
+        <div class="card">
+          <div class="icon iGreen">📞</div>
+          <h3 style="margin:0 0 10px;">Get in Touch</h3>
+
+          <div class="kv">
+            <div class="row"><b>Phone</b><span>[Add phone]</span></div>
+            <div class="row"><b>Email</b><span>[Add email]</span></div>
+            <div class="row"><b>Address</b><span>441 E Willow St, Carbondale, IL 62901</span></div>
+          </div>
+
+          <p style="margin:12px 0 0; color:var(--muted);">
+            For program questions, include the child’s age/grade and what program you’re interested in.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon iPink">💌</div>
+          <h3 style="margin:0 0 10px;">Message Form (Optional)</h3>
+          <p style="margin:0 0 12px; color:var(--muted);">
+            This form is a placeholder (it won’t email yet). If you tell me what platform you’re using,
+            I can make it submit for real.
+          </p>
+
+          <form onsubmit="event.preventDefault(); alert('Thanks! This is a placeholder form. Add a backend to submit.');">
+            <label class="small">Name</label><br />
+            <input required
+              style="width:100%; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.80); color:var(--ink); margin:6px 0 12px;" />
+
+            <label class="small">Email</label><br />
+            <input type="email" required
+              style="width:100%; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.80); color:var(--ink); margin:6px 0 12px;" />
+
+            <label class="small">Message</label><br />
+            <textarea required rows="4"
+              style="width:100%; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.80); color:var(--ink); margin:6px 0 12px;"></textarea>
+
+            <button class="btn primary" type="submit" style="width:100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="small">
+        © <span id="y"></span> Eurma C. Hayes Community Center • Carbondale, Illinois
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
